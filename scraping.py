@@ -7,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def scrape_all():
+    #print("reached scarpe all")
     # Initiate headless driver for deployment
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=True)
@@ -23,14 +24,14 @@ def scrape_all():
 
         "last_modified": dt.datetime.now()
     }
-
+    #print(data)
     # Stop webdriver and return data
     browser.quit()
     return data
 
 
 def mars_news(browser):
-
+    #print("reached mars news")
     # Scrape Mars News
     # Visit the mars nasa news site
     url = 'https://data-class-mars.s3.amazonaws.com/Mars/index.html'
@@ -58,6 +59,7 @@ def mars_news(browser):
 
 
 def featured_image(browser):
+    #print("featured_image")
     # Visit URL
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(url)
@@ -101,21 +103,22 @@ def mars_facts():
 
 
 def hemisphere(browser):
+    print("hemispher browser")
     url = 'https://marshemispheres.com/'
 
     browser.visit(url)
 
     # 2. Create a list to hold the images and titles.
-    hemisphere_image_urls = [{'img_url': 'https://marshemispheres.com/images/full.jpg',
-    'title': 'Cerberus Hemisphere Enhanced'},
-    {'img_url': 'https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg',
-    'title': 'Schiaparelli Hemisphere Enhanced'},
-    {'img_url': 'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg',
-    'title': 'Syrtis Major Hemisphere Enhanced'},
-    {'img_url': 'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg',
-    'title': 'Valles Marineris Hemisphere Enhanced'}]
+    #hemisphere_image_urls = [{'img_url': 'https://marshemispheres.com/images/full.jpg',
+    #'title': 'Cerberus Hemisphere Enhanced'},
+    #{'img_url': 'https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg',
+    #'title': 'Schiaparelli Hemisphere Enhanced'},
+    #{'img_url': 'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg',
+    #'title': 'Syrtis Major Hemisphere Enhanced'},
+    #{'img_url': 'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg',
+    #'title': 'Valles Marineris Hemisphere Enhanced'}]
 
-    
+    hemisphere_image_urls = []
 
     # For loop to pull Titles and image URLs
     for i in range(4):
@@ -132,10 +135,11 @@ def hemisphere(browser):
 
         except AttributeError:
             return None
-
+        #print(hemisphere_image_urls)
     return hemisphere_image_urls
 
 
 if __name__ == "__main__":
     # If running as script, print scraped data
     print(scrape_all())
+    
